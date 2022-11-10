@@ -1,0 +1,3 @@
+C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/cmake-build-debug/CMakeFiles/pharmacyManagementSystem.dir
+C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/cmake-build-debug/CMakeFiles/rebuild_cache.dir
