@@ -4,6 +4,8 @@
 
 void phLogin();
 
+void phMenu();
+
 
 
 #endif //PHARMACYMANAGEMENTSYSTEM_PHARMACIST_H

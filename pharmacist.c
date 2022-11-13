@@ -5,12 +5,19 @@
 
 
 void phLogin() {
-  int choice;
-  choice = menu("\nDo you have an account ?\n\t1. Yes\n\t2. No\n\t3. Exit",1,3);
+  int choice,found;
+  choice=menu("\nDo you have an account ?\n\t1. Yes\n\t2. No\n\t3. Exit",1,3);
+
   if(choice == 3) return;
   if(choice == 1) {
-    logIn();
+    found = logIn("pharmacist.txt");
+    if(found) phMenu();
   } else {
-    signIn();
+    signUp("pharmacist.txt");
   }
+}
+
+
+void phMenu() {
+//  int choice = menu("");
 }
