@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include "functions.h"
-#include "pharmacist.h"
-#include "customer.h"
+#include "headers.h"
 
 
 
@@ -13,10 +10,9 @@ int main() {
     choice = menu("\nYou are :\n\t1. Pharmacist\n\t2. Customer\n\t3. Exit",1,3);
     switch(choice) {
       case 1 :
-        phLogin();
+        phAccountCheck();
         break;
       case 2 :
-        cusLogin();
         break;
       case 3 :
         printf("Have a good day!");

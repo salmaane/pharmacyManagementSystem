@@ -107,7 +107,8 @@
 			[
 				1,
 				4,
-				5
+				5,
+				7
 			]
 		}
 	],
@@ -151,6 +152,11 @@
 			"compileGroupIndex" : 0,
 			"path" : "pharmacist.c",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "headers.h",
+			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"
