@@ -18,7 +18,22 @@ pharmacist phSignUp();
 pharmacist requestInfos();
 void phMenu(pharmacist phmc);
 
+
+
+typedef struct medicine {
+    int id;
+    int unit_cost;
+    int sale_cost;
+    int quantity;
+    char name[20];
+    char supplier_name[20];
+    char company_name[20];
+    char mfc_date[10];
+    char exp_date[10];
+}medicine;
+
 void addMedicine();
+medicine requestMedicineInfos();
 void deleteMedicine();
 void updateMedicine();
 void viewStock();

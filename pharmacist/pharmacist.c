@@ -157,14 +157,65 @@ void phMenu(pharmacist phmc){
 
 //------------------------------------------------------
 
-void addMedicine() {
+medicine requestMedicineInfos(){
+  medicine mdcn;
 
+  printf("\nMEDICINE ID:_");
+  scanf("%d",&mdcn.id);
+  fflush(stdin);
+
+  printf("\nMEDICINE NAME:_");
+  scanf("%s",mdcn.name);
+  fflush(stdin);
+
+  printf("\nMEDICINE SUPPLIER NAME:_");
+  scanf("%s",mdcn.supplier_name);
+  fflush(stdin);
+
+  printf("\nMEDICINE COMPANY NAME:_");
+  scanf("%s",mdcn.company_name);
+  fflush(stdin);
+
+  printf("\nMEDICINE MANUFACTURING DATE:_");
+  scanf("%s",mdcn.mfc_date);
+  fflush(stdin);
+
+  printf("\nMEDICINE EXP DATE:_");
+  scanf("%s",mdcn.exp_date);
+  fflush(stdin);
+
+  printf("\nMEDICINE UNIT COST:_");
+  scanf("%d",&mdcn.unit_cost);
+  fflush(stdin);
+
+  printf("\nMEDICINE SALE COST:_");
+  scanf("%d",&mdcn.sale_cost);
+  fflush(stdin);
+
+  printf("\nMEDICINE QUANTITY:_");
+  scanf("%d",&mdcn.quantity);
+  fflush(stdin);
+
+  return mdcn;
+}
+
+//------------------------------------------------------
+
+void addMedicine() {
+  medicine mdcn = requestMedicineInfos();
+
+  FILE *fp = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
+                   "pharmacist/medicine.txt","ab");
+
+  fwrite(&mdcn,sizeof(medicine),1,fp);
+
+  fclose(fp);
 }
 
 //------------------------------------------------------
 
 void deleteMedicine() {
-
+  
 }
 
 //------------------------------------------------------
