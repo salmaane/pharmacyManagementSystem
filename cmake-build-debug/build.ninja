@@ -55,11 +55,11 @@ build CMakeFiles/pharmacyManagementSystem.dir/main.c.obj: C_COMPILER__pharmacyMa
   OBJECT_DIR = CMakeFiles\pharmacyManagementSystem.dir
   OBJECT_FILE_DIR = CMakeFiles\pharmacyManagementSystem.dir
 
-build CMakeFiles/pharmacyManagementSystem.dir/customer.c.obj: C_COMPILER__pharmacyManagementSystem_Debug C$:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/customer.c || cmake_object_order_depends_target_pharmacyManagementSystem
-  DEP_FILE = CMakeFiles\pharmacyManagementSystem.dir\customer.c.obj.d
+build CMakeFiles/pharmacyManagementSystem.dir/customer/customer.c.obj: C_COMPILER__pharmacyManagementSystem_Debug C$:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/customer/customer.c || cmake_object_order_depends_target_pharmacyManagementSystem
+  DEP_FILE = CMakeFiles\pharmacyManagementSystem.dir\customer\customer.c.obj.d
   FLAGS = -g -std=gnu2x
   OBJECT_DIR = CMakeFiles\pharmacyManagementSystem.dir
-  OBJECT_FILE_DIR = CMakeFiles\pharmacyManagementSystem.dir
+  OBJECT_FILE_DIR = CMakeFiles\pharmacyManagementSystem.dir\customer
 
 build CMakeFiles/pharmacyManagementSystem.dir/functions.c.obj: C_COMPILER__pharmacyManagementSystem_Debug C$:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/functions.c || cmake_object_order_depends_target_pharmacyManagementSystem
   DEP_FILE = CMakeFiles\pharmacyManagementSystem.dir\functions.c.obj.d
@@ -67,11 +67,11 @@ build CMakeFiles/pharmacyManagementSystem.dir/functions.c.obj: C_COMPILER__pharm
   OBJECT_DIR = CMakeFiles\pharmacyManagementSystem.dir
   OBJECT_FILE_DIR = CMakeFiles\pharmacyManagementSystem.dir
 
-build CMakeFiles/pharmacyManagementSystem.dir/pharmacist.c.obj: C_COMPILER__pharmacyManagementSystem_Debug C$:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/pharmacist.c || cmake_object_order_depends_target_pharmacyManagementSystem
-  DEP_FILE = CMakeFiles\pharmacyManagementSystem.dir\pharmacist.c.obj.d
+build CMakeFiles/pharmacyManagementSystem.dir/pharmacist/pharmacist.c.obj: C_COMPILER__pharmacyManagementSystem_Debug C$:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/pharmacist/pharmacist.c || cmake_object_order_depends_target_pharmacyManagementSystem
+  DEP_FILE = CMakeFiles\pharmacyManagementSystem.dir\pharmacist\pharmacist.c.obj.d
   FLAGS = -g -std=gnu2x
   OBJECT_DIR = CMakeFiles\pharmacyManagementSystem.dir
-  OBJECT_FILE_DIR = CMakeFiles\pharmacyManagementSystem.dir
+  OBJECT_FILE_DIR = CMakeFiles\pharmacyManagementSystem.dir\pharmacist
 
 
 # =============================================================================
@@ -81,7 +81,7 @@ build CMakeFiles/pharmacyManagementSystem.dir/pharmacist.c.obj: C_COMPILER__phar
 #############################################
 # Link the executable pharmacyManagementSystem.exe
 
-build pharmacyManagementSystem.exe: C_EXECUTABLE_LINKER__pharmacyManagementSystem_Debug CMakeFiles/pharmacyManagementSystem.dir/main.c.obj CMakeFiles/pharmacyManagementSystem.dir/customer.c.obj CMakeFiles/pharmacyManagementSystem.dir/functions.c.obj CMakeFiles/pharmacyManagementSystem.dir/pharmacist.c.obj
+build pharmacyManagementSystem.exe: C_EXECUTABLE_LINKER__pharmacyManagementSystem_Debug CMakeFiles/pharmacyManagementSystem.dir/main.c.obj CMakeFiles/pharmacyManagementSystem.dir/customer/customer.c.obj CMakeFiles/pharmacyManagementSystem.dir/functions.c.obj CMakeFiles/pharmacyManagementSystem.dir/pharmacist/pharmacist.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\pharmacyManagementSystem.dir

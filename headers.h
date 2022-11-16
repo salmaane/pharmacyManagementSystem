@@ -5,8 +5,8 @@
 #include<stdlib.h>
 #include<string.h>
 #include "functions.h"
-#include "pharmacist.h"
-#include "customer.h"
+#include "pharmacist/pharmacist.h"
+#include "customer/customer.h"
 
 
 

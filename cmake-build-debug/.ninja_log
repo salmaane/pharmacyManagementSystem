@@ -1,7 +1,15 @@
 # ninja log v5
-2	143	6901364142451765	CMakeFiles/pharmacyManagementSystem.dir/main.c.obj	bd0019fee236ffbf
-123	383	6901364614353551	pharmacyManagementSystem.exe	d9b0a11e27226cd
-12	156	6901364142614010	CMakeFiles/pharmacyManagementSystem.dir/pharmacist.c.obj	aa6c687947691190
-12	193	6897658123677578	CMakeFiles/pharmacyManagementSystem.dir/customer.c.obj	e7260ea95c05e057
-5	123	6901364612615640	CMakeFiles/pharmacyManagementSystem.dir/functions.c.obj	bab8c33eec10df03
+2	184	6903220416547853	CMakeFiles/pharmacyManagementSystem.dir/main.c.obj	bd0019fee236ffbf
+111	219	6903264494086425	pharmacyManagementSystem.exe	73f45b5436364538
+1	826	6903268176662025	build.ninja	7af4c1c42238f2ae
+3	108	6903210024538534	CMakeFiles/pharmacyManagementSystem.dir/pharmacist.c.obj	aa6c687947691190
+15	143	6903220416168870	CMakeFiles/pharmacyManagementSystem.dir/customer.c.obj	e7260ea95c05e057
+8	182	6903220416657552	CMakeFiles/pharmacyManagementSystem.dir/functions.c.obj	bab8c33eec10df03
 10	136	6897309422233873	CMakeFiles/pharmacyManagementSystem.dir/pharmacien.c.obj	76094411cb6505ce
+5	111	6903264493047822	CMakeFiles/pharmacyManagementSystem.dir/pharmacist/pharmacist.c.obj	7c80f16832ad10e8
+1	214	6903268176662025	build.ninja	7af4c1c42238f2ae
+9	132	6903268178654775	CMakeFiles/pharmacyManagementSystem.dir/customer/customer.c.obj	7659870cae9b5966
+2	154	6903268178694667	CMakeFiles/pharmacyManagementSystem.dir/functions.c.obj	bab8c33eec10df03
+5	183	6903268179233234	CMakeFiles/pharmacyManagementSystem.dir/pharmacist/pharmacist.c.obj	7c80f16832ad10e8
+133	265	6903268180053958	CMakeFiles/pharmacyManagementSystem.dir/main.c.obj	bd0019fee236ffbf
+265	383	6903268181202141	pharmacyManagementSystem.exe	c149895b62adf420
