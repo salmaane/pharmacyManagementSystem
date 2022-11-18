@@ -30,7 +30,7 @@ pharmacist requestInfos(){
   scanf("%[^\n]s", phmc.lname);
   fflush(stdin);
 
-  printf("\nEnter your Birthday:_");
+  printf("\nEnter your Birthday (dd/mm/yyyy):_");
   scanf("%[^\n]s", phmc.birthday);
   fflush(stdin);
 
@@ -165,22 +165,22 @@ medicine requestMedicineInfos(){
   fflush(stdin);
 
   printf("\nMEDICINE NAME:_");
-  scanf("%s",mdcn.name);
+  scanf("%[^\n]s",mdcn.name);
   fflush(stdin);
 
   printf("\nMEDICINE SUPPLIER NAME:_");
-  scanf("%s",mdcn.supplier_name);
+  scanf("%[^\n]s",mdcn.supplier_name);
   fflush(stdin);
 
   printf("\nMEDICINE COMPANY NAME:_");
-  scanf("%s",mdcn.company_name);
+  scanf("%[^\n]s",mdcn.company_name);
   fflush(stdin);
 
-  printf("\nMEDICINE MANUFACTURING DATE:_");
+  printf("\nMEDICINE MANUFACTURING DATE (dd/mm/yyyy):_");
   scanf("%s",mdcn.mfc_date);
   fflush(stdin);
 
-  printf("\nMEDICINE EXP DATE:_");
+  printf("\nMEDICINE EXP DATE (dd/mm/yyyy):_");
   scanf("%s",mdcn.exp_date);
   fflush(stdin);
 
@@ -215,7 +215,43 @@ void addMedicine() {
 //------------------------------------------------------
 
 void deleteMedicine() {
-  
+  medicine mdcn;
+  char name[20];
+  int found = 0;
+  printf("Enter Medicine name:_");
+  scanf("%s",name);
+  fflush(stdin);
+
+
+  FILE *fp = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
+                   "pharmacist/medicine.txt","rb");
+
+  fseek(fp,0,SEEK_END);
+  int size = ftell(fp) / sizeof(medicine);
+  medicine *medi = (medicine*)malloc(size*sizeof(medicine));
+
+  int i=0;
+  rewind(fp);
+  while(fread(&mdcn,sizeof(medicine),1,fp)) {
+    if(strcmp(mdcn.name,name)==0) {
+      found = 1;
+      continue;
+    }
+    medi[i] = mdcn;
+    i++;     // Still have a problem here.
+  }
+  fclose(fp);
+  if(!found) {
+    printf("%s not found.",name);
+    return;
+  }
+  FILE *fw = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
+                   "pharmacist/medicine.txt","wb");
+  for(int j=0;j<i;j++) {
+    fwrite(&medi[j],sizeof(medicine),1,fw);
+  }
+  printf("\nMedicine deleted.");
+  fclose(fw);
 }
 
 //------------------------------------------------------
@@ -227,13 +263,48 @@ void updateMedicine() {
 //------------------------------------------------------
 
 void viewStock() {
-
+  medicine mdcn;
+  FILE *fp = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
+                   "pharmacist/medicine.txt","rb");
+  if(fp == NULL) {
+    printf("\nfile not found.");
+  }
+  while(fread(&mdcn,sizeof(medicine),1,fp)) {
+    printf("\n\tMEDICINE ID: %d\n\tMEDICINE NAME: %s"
+           "\n\tMEDICINE PRICE: %d DH\n\tMEDICINE QUANTITY: %d\n"
+           ,mdcn.id,mdcn.name,mdcn.sale_cost,mdcn.quantity);
+  }
+  fclose(fp);
 }
 
 //------------------------------------------------------
 
 void searchMedicine() {
+  medicine mdcn;
+  char name[20];
+  int found = 0;
+  printf("Enter Medicine name:_");
+  scanf("%s",name);
+  fflush(stdin);
 
+  FILE *fp = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
+                   "pharmacist/medicine.txt","rb");
+
+  while(fread(&mdcn,sizeof(medicine),1,fp)) {
+    if(strcmp(mdcn.name,name)==0) {
+      found = 1;
+      break;
+    }
+  }
+  if(found) {
+    printf("\n%s is available :\n",name);
+    printf("\n\tMEDICINE ID: %d\n\tMEDICINE NAME: %s"
+           "\n\tMEDICINE PRICE: %d DH\n\tMEDICINE QUANTITY: %d\n"
+            ,mdcn.id,mdcn.name,mdcn.sale_cost,mdcn.quantity);
+  }else {
+    printf("Sorry %s is not available.",name);
+  }
+  fclose(fp);
 }
 
 //------------------------------------------------------
