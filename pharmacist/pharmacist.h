@@ -38,7 +38,7 @@ void deleteMedicine();
 void updateMedicine();
 void viewStock();
 void searchMedicine();
-void updateInfos();
+void updateInfos(pharmacist phmc);
 
 
 

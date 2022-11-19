@@ -145,7 +145,7 @@ void phMenu(pharmacist phmc){
         searchMedicine();
         break;
       case 6:
-        updateInfos();
+        updateInfos(phmc);
         break;
       case 7:
         return;
@@ -238,7 +238,7 @@ void deleteMedicine() {
       continue;
     }
     medi[i] = mdcn;
-    i++;     // Still have a problem here.
+    i++;
   }
   fclose(fp);
   if(!found) {
@@ -257,7 +257,43 @@ void deleteMedicine() {
 //------------------------------------------------------
 
 void updateMedicine() {
+  medicine mdcn;
+  char name[20];
+  int found = 0;
+  printf("Enter Medicine name:_");
+  scanf("%s",name);
+  fflush(stdin);
 
+
+  FILE *fp = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
+                   "pharmacist/medicine.txt","rb");
+
+  fseek(fp,0,SEEK_END);
+  int size = ftell(fp) / sizeof(medicine);
+  medicine *medi = (medicine*)malloc(size*sizeof(medicine));
+
+  int i=0;
+  rewind(fp);
+  while(fread(&mdcn,sizeof(medicine),1,fp)) {
+    if(strcmp(mdcn.name,name)==0) {
+      mdcn = requestMedicineInfos();
+      found = 1;
+    }
+    medi[i] = mdcn;
+    i++;
+  }
+  fclose(fp);
+  if(!found) {
+    printf("%s not found.",name);
+    return;
+  }
+  FILE *fw = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
+                   "pharmacist/medicine.txt","wb");
+  for(int j=0;j<i;j++) {
+    fwrite(&medi[j],sizeof(medicine),1,fw);
+  }
+  printf("\nMedicine updated.");
+  fclose(fw);
 }
 
 //------------------------------------------------------
@@ -302,13 +338,57 @@ void searchMedicine() {
            "\n\tMEDICINE PRICE: %d DH\n\tMEDICINE QUANTITY: %d\n"
             ,mdcn.id,mdcn.name,mdcn.sale_cost,mdcn.quantity);
   }else {
-    printf("Sorry %s is not available.",name);
+    printf("\nSorry %s is not available.",name);
   }
   fclose(fp);
 }
 
 //------------------------------------------------------
 
-void updateInfos() {
+void updateInfos(pharmacist phmc) {
+  pharmacist pharmacist1;
+
+  FILE *fp = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
+                   "pharmacist/pharmacist.txt","rb");
+  fseek(fp,0,SEEK_END);
+  int size = ftell(fp) / sizeof(pharmacist);
+  pharmacist *pharmacists = (pharmacist*)malloc(size*sizeof(pharmacist));
+
+  int i=0;
+  rewind(fp);
+  while(fread(&pharmacist1,sizeof(pharmacist),1,fp)) {
+    if(strcmp(pharmacist1.fname,phmc.fname)==0 && strcmp(pharmacist1.lname,phmc.lname)==0 ) {
+      pharmacist1 = requestInfos();
+      char pass1[30],pass2[30];
+      do{
+        printf("\nChoose a password (between 8 and 20 characters):_");
+        scanf("%[^\n]s",pass1);
+        fflush(stdin);
+        if(strlen(pass1)<8 || strlen(pass1)>20) {
+          continue;
+        }
+        printf("\nConfirm your password:_");
+        scanf("%[^\n]s",pass2);
+        fflush(stdin);
+        if(strcmp(pass1,pass2) == 0) {
+          break;
+        } else {
+          printf("\nYour password doesn't match.\n");
+        }
+      } while(1);
+      strcpy(pharmacist1.password, pass1);
+    }
+    pharmacists[i] = pharmacist1;
+    i++;
+  }
+  fclose(fp);
+
+  FILE *fw = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
+                   "pharmacist/pharmacist.txt","wb");
+  for(int j=0;j<i;j++) {
+    fwrite(&pharmacists[j],sizeof(pharmacist),1,fw);
+  }
+  printf("\nInfos updated.");
+  fclose(fw);
 
 }
