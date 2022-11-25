@@ -13,6 +13,7 @@ int main() {
         phAccountCheck();
         break;
       case 2 :
+        cusAccountCheck();
         break;
       case 3 :
         printf("Have a good day!");

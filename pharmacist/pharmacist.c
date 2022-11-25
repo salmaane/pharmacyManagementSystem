@@ -19,7 +19,7 @@ void phAccountCheck() {
 
 //------------------------------------------------------
 
-pharmacist requestInfos(){
+pharmacist phRequestInfos(){
   pharmacist phmc;
 
   printf("\nEnter your first name:_");
@@ -49,7 +49,7 @@ pharmacist requestInfos(){
 
 pharmacist phSignUp() {
 
-  pharmacist phmc = requestInfos();
+  pharmacist phmc = phRequestInfos();
   char pass1[30],pass2[30];
 
   do{
@@ -358,7 +358,7 @@ void updateInfos(pharmacist phmc) {
   rewind(fp);
   while(fread(&pharmacist1,sizeof(pharmacist),1,fp)) {
     if(strcmp(pharmacist1.fname,phmc.fname)==0 && strcmp(pharmacist1.lname,phmc.lname)==0 ) {
-      pharmacist1 = requestInfos();
+      pharmacist1 = phRequestInfos();
       char pass1[30],pass2[30];
       do{
         printf("\nChoose a password (between 8 and 20 characters):_");

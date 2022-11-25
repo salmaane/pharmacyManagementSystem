@@ -15,7 +15,7 @@ typedef struct pharmacist {
 void phAccountCheck();
 pharmacist* phLogIn();
 pharmacist phSignUp();
-pharmacist requestInfos();
+pharmacist phRequestInfos();
 void phMenu(pharmacist phmc);
 
 

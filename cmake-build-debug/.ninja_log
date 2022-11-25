@@ -19,3 +19,8 @@
 136	245	6906005276155186	pharmacyManagementSystem.exe	c149895b62adf420
 4	133	6906008364748497	CMakeFiles/pharmacyManagementSystem.dir/pharmacist/pharmacist.c.obj	7c80f16832ad10e8
 134	240	6906008365776823	pharmacyManagementSystem.exe	c149895b62adf420
+9	415	6910895390954949	CMakeFiles/pharmacyManagementSystem.dir/customer/customer.c.obj	7659870cae9b5966
+17	426	6910895390905069	CMakeFiles/pharmacyManagementSystem.dir/functions.c.obj	bab8c33eec10df03
+4	426	6910895390934991	CMakeFiles/pharmacyManagementSystem.dir/main.c.obj	bd0019fee236ffbf
+415	583	6910895392855424	CMakeFiles/pharmacyManagementSystem.dir/pharmacist/pharmacist.c.obj	7c80f16832ad10e8
+583	889	6910895395811666	pharmacyManagementSystem.exe	c149895b62adf420
