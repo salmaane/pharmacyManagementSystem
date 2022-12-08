@@ -32,6 +32,7 @@ typedef struct medicine {
     char exp_date[10];
 }medicine;
 
+
 void addMedicine();
 medicine requestMedicineInfos();
 void deleteMedicine();

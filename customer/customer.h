@@ -18,6 +18,21 @@ customer cusRequestInfos();
 customer* cusLogIn();
 customer cusSignUp();
 
+void shopMedicine();
+void payment(medicine mdcn);
+void addToCart(medicine mdcn,int quantity);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #endif //PHARMACYMANAGEMENTSYSTEM_CUSTOMER_H

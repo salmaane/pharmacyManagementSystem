@@ -24,3 +24,10 @@
 4	426	6910895390934991	CMakeFiles/pharmacyManagementSystem.dir/main.c.obj	bd0019fee236ffbf
 415	583	6910895392855424	CMakeFiles/pharmacyManagementSystem.dir/pharmacist/pharmacist.c.obj	7c80f16832ad10e8
 583	889	6910895395811666	pharmacyManagementSystem.exe	c149895b62adf420
+34	411	6920251917329059	CMakeFiles/pharmacyManagementSystem.dir/customer/customer.c.obj	7659870cae9b5966
+17	416	6920251917329059	CMakeFiles/pharmacyManagementSystem.dir/functions.c.obj	bab8c33eec10df03
+5	418	6920251917329059	CMakeFiles/pharmacyManagementSystem.dir/main.c.obj	bd0019fee236ffbf
+412	583	6920251919126014	CMakeFiles/pharmacyManagementSystem.dir/pharmacist/pharmacist.c.obj	7c80f16832ad10e8
+583	872	6920251921935230	pharmacyManagementSystem.exe	c149895b62adf420
+18	392	6922385020463387	CMakeFiles/pharmacyManagementSystem.dir/customer/customer.c.obj	7659870cae9b5966
+393	772	6922385024280972	pharmacyManagementSystem.exe	c149895b62adf420

@@ -122,5 +122,89 @@ customer* cusLogIn() {
 //-------------------------------------------
 
 void cusMenu(customer cus) {
-  printf("Logged in!");
+  int choice;
+  printf("\nWelcome %s",cus.fname);
+  while(1) {
+    choice = menu("\nWhich operation you want to do ?\n\t1. View medicines\n\t2. Shop medicine"
+                  "\n\t3. View cart\n\t4. Confirm Orders\n\t5. LogOut",1,5);
+    switch(choice) {
+      case 1:
+        viewStock();
+        break;
+      case 2:
+        shopMedicine();
+        break;
+      case 3:
+        break;
+      case 4:
+        break;
+      case 5:
+        return;
+      default:
+        break;
+    }
+  }
 }
+
+
+//-------------------------------------------
+
+
+void shopMedicine() {
+  medicine mdcn;
+  char name[20];
+  int found = 0;
+  printf("Enter Medicine name:_");
+  scanf("%s",name);
+  fflush(stdin);
+
+  FILE *fp = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
+                   "pharmacist/medicine.txt","rb");
+
+  while(fread(&mdcn,sizeof(medicine),1,fp)) {
+    if(strcmp(mdcn.name,name)==0) {
+      found = 1;
+      break;
+    }
+  }
+  if(found) {
+    payment(mdcn);
+  } else {
+    printf("\nSorry %s is not available.",name);
+  }
+}
+
+void payment(medicine mdcn) {
+  int quantity;
+  do{
+    printf("\nEnter wanted quantity:_");
+    scanf("%d",&quantity);
+
+    if(quantity == 0) {
+      printf("\nMedicine isn't added to cart.");
+      return;
+    }
+  } while(quantity>mdcn.quantity);
+
+  addToCart(mdcn,quantity);
+}
+
+void addToCart(medicine mdcn,int quantity) {
+  mdcn.quantity = quantity;
+
+  FILE *fp = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
+                   "customer/cart.txt","wb");
+  if(fp == NULL) {
+    printf("Error: file not found.");
+    return;
+  }
+
+  fwrite(&mdcn,sizeof(medicine),1,fp);
+  printf("%d %s added to cart.",quantity,mdcn.name);
+
+  fclose(fp);
+}
+
+
+// Function to remove purshased medicine (number 4 : confirm orders)
+// still need to fix cart file (if i returned to main menu and shop again the last medicine goew cux of wb)
