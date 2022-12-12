@@ -22,6 +22,7 @@ void shopMedicine();
 void payment(medicine mdcn);
 void addToCart(medicine mdcn,int quantity);
 void viewCart();
+void confirmOrders();
 
 
 

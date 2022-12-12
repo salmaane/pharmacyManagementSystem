@@ -119,7 +119,7 @@ customer* cusLogIn() {
   return cus;
 }
 
-//-------------------------------------------
+//--------------------------------------------
 
 void cusMenu(customer cus) {
   int choice;
@@ -138,12 +138,11 @@ void cusMenu(customer cus) {
         viewCart();
         break;
       case 4:
+        confirmOrders();
         break;
       case 5:
         if(remove("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/customer/cart.txt") == 0) {
           printf("\nLogged out successfully.");
-        } else {
-          printf("\nError : logging out.");
         }
         return;
       default:
@@ -153,7 +152,7 @@ void cusMenu(customer cus) {
 }
 
 
-//-------------------------------------------
+//-------------------------------------------------
 
 
 void shopMedicine() {
@@ -186,6 +185,8 @@ void shopMedicine() {
   }
 }
 
+//------------------------------------------------
+
 void payment(medicine mdcn) {
   int quantity;
   do{
@@ -203,6 +204,8 @@ void payment(medicine mdcn) {
   addToCart(mdcn,quantity);
 }
 
+//------------------------------------------------
+
 void addToCart(medicine mdcn,int quantity) {
   mdcn.quantity = quantity;
 
@@ -219,14 +222,15 @@ void addToCart(medicine mdcn,int quantity) {
   fclose(fp);
 }
 
-// Function to remove purshased medicine (number 4 : confirm orders)
+//------------------------------------------------
 
 void viewCart() {
   medicine mdcn;
   FILE *fp = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
                    "customer/cart.txt","rb");
   if(fp == NULL) {
-    printf("\nfile not found.");
+    printf("\nYour Cart is Empty.");
+    return;
   }
 
   int total =0;
@@ -237,7 +241,39 @@ void viewCart() {
     total += (mdcn.sale_cost * mdcn.quantity);
   }
   if(fp != NULL) {
-    printf("\n\t====> You have in total : %d$", total);
+    printf("\n\t====> You have in total : %d$\n", total);
   }
   fclose(fp);
 }
+
+//------------------------------------------------
+
+void confirmOrders() {
+  medicine mdcn;
+  FILE *fp = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
+                   "customer/cart.txt","rb");
+  if(fp == NULL) {
+    printf("\nYour Cart is Empty.");
+    return;
+  }
+
+  int total =0;
+  while(fread(&mdcn,sizeof(medicine),1,fp)) {
+    total += (mdcn.sale_cost * mdcn.quantity);
+  }
+  printf("\n====> You have in total : %d$", total);
+
+  fclose(fp);
+
+  int choice = menu("\nDo you want to confirm your orders ?\n\t1. Yes\n\t2. No",1,2);
+  if(choice == 2) {
+    printf("\nOrders are not confirmed");
+    return;
+  }
+
+  if(remove("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/customer/cart.txt")==0) {
+    printf("\nOrders confirmed, Thank you.");
+  }
+}
+
+// I still have to create function that decrease the purchased medicines and remove them from medicine file.
