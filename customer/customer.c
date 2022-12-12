@@ -135,10 +135,16 @@ void cusMenu(customer cus) {
         shopMedicine();
         break;
       case 3:
+        viewCart();
         break;
       case 4:
         break;
       case 5:
+        if(remove("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/customer/cart.txt") == 0) {
+          printf("\nLogged out successfully.");
+        } else {
+          printf("\nError : logging out.");
+        }
         return;
       default:
         break;
@@ -162,7 +168,13 @@ void shopMedicine() {
                    "pharmacist/medicine.txt","rb");
 
   while(fread(&mdcn,sizeof(medicine),1,fp)) {
-    if(strcmp(mdcn.name,name)==0) {
+    for(int i = 0; mdcn.name[i]; i++){
+      mdcn.name[i] = tolower(mdcn.name[i]);
+    }
+    for(int i = 0; name[i]; i++){
+      name[i] = tolower(name[i]);
+    }
+    if(strcmp(mdcn.name, name) == 0) {
       found = 1;
       break;
     }
@@ -179,7 +191,9 @@ void payment(medicine mdcn) {
   do{
     printf("\nEnter wanted quantity:_");
     scanf("%d",&quantity);
-
+    if(quantity>mdcn.quantity) {
+      printf("\nSorry only %d %s left.",mdcn.quantity,mdcn.name);
+    }
     if(quantity == 0) {
       printf("\nMedicine isn't added to cart.");
       return;
@@ -193,18 +207,37 @@ void addToCart(medicine mdcn,int quantity) {
   mdcn.quantity = quantity;
 
   FILE *fp = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
-                   "customer/cart.txt","wb");
+                   "customer/cart.txt","ab");
   if(fp == NULL) {
-    printf("Error: file not found.");
+    printf("Error: file");
     return;
   }
 
   fwrite(&mdcn,sizeof(medicine),1,fp);
-  printf("%d %s added to cart.",quantity,mdcn.name);
+  printf("\n%d %s added to cart.",quantity,mdcn.name);
 
   fclose(fp);
 }
 
-
 // Function to remove purshased medicine (number 4 : confirm orders)
-// still need to fix cart file (if i returned to main menu and shop again the last medicine goew cux of wb)
+
+void viewCart() {
+  medicine mdcn;
+  FILE *fp = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
+                   "customer/cart.txt","rb");
+  if(fp == NULL) {
+    printf("\nfile not found.");
+  }
+
+  int total =0;
+  while(fread(&mdcn,sizeof(medicine),1,fp)) {
+    printf("\n\tMEDICINE ID: %d\n\tMEDICINE NAME: %s"
+           "\n\tMEDICINE PRICE: %d DH\n\tMEDICINE QUANTITY: %d\n"
+            ,mdcn.id,mdcn.name,mdcn.sale_cost,mdcn.quantity);
+    total += (mdcn.sale_cost * mdcn.quantity);
+  }
+  if(fp != NULL) {
+    printf("\n\t====> You have in total : %d$", total);
+  }
+  fclose(fp);
+}
