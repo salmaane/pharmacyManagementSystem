@@ -21,8 +21,11 @@ customer cusSignUp();
 void shopMedicine();
 void payment(medicine mdcn);
 void addToCart(medicine mdcn,int quantity);
+void showMedicines();
 void viewCart();
 void confirmOrders();
+void soldMedicine();
+void removeMedicine(medicine mdcn);
 
 
 

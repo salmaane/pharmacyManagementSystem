@@ -129,7 +129,7 @@ void cusMenu(customer cus) {
                   "\n\t3. View cart\n\t4. Confirm Orders\n\t5. LogOut",1,5);
     switch(choice) {
       case 1:
-        viewStock();
+        showMedicines();
         break;
       case 2:
         shopMedicine();
@@ -151,6 +151,23 @@ void cusMenu(customer cus) {
   }
 }
 
+
+//-------------------------------------------------
+
+void showMedicines() {
+  medicine mdcn;
+  FILE *fp = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
+                   "pharmacist/medicine.txt","rb");
+  if(fp == NULL) {
+    printf("\nfile not found.");
+  }
+  while(fread(&mdcn,sizeof(medicine),1,fp)) {
+    printf("\n\tMEDICINE NAME: %s"
+           "\n\tMEDICINE PRICE: %d DH\n"
+            ,mdcn.name,mdcn.sale_cost);
+  }
+  fclose(fp);
+}
 
 //-------------------------------------------------
 
@@ -235,13 +252,13 @@ void viewCart() {
 
   int total =0;
   while(fread(&mdcn,sizeof(medicine),1,fp)) {
-    printf("\n\tMEDICINE ID: %d\n\tMEDICINE NAME: %s"
+    printf("\n\tMEDICINE NAME: %s"
            "\n\tMEDICINE PRICE: %d DH\n\tMEDICINE QUANTITY: %d\n"
-            ,mdcn.id,mdcn.name,mdcn.sale_cost,mdcn.quantity);
+            ,mdcn.name,mdcn.sale_cost,mdcn.quantity);
     total += (mdcn.sale_cost * mdcn.quantity);
   }
   if(fp != NULL) {
-    printf("\n\t====> You have in total : %d$\n", total);
+    printf("\n\t====> You have in total : %dDH\n", total);
   }
   fclose(fp);
 }
@@ -261,7 +278,7 @@ void confirmOrders() {
   while(fread(&mdcn,sizeof(medicine),1,fp)) {
     total += (mdcn.sale_cost * mdcn.quantity);
   }
-  printf("\n====> You have in total : %d$", total);
+  printf("\n====> You have in total : %dDH", total);
 
   fclose(fp);
 
@@ -270,10 +287,56 @@ void confirmOrders() {
     printf("\nOrders are not confirmed");
     return;
   }
-
+  soldMedicine();
   if(remove("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/customer/cart.txt")==0) {
     printf("\nOrders confirmed, Thank you.");
   }
 }
 
-// I still have to create function that decrease the purchased medicines and remove them from medicine file.
+//------------------------------------------------
+
+void soldMedicine() {
+  medicine mdcn;
+  FILE *fp = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
+                   "customer/cart.txt","rb");
+
+  while(fread(&mdcn,sizeof(medicine),1,fp)) {
+    removeMedicine(mdcn);
+  }
+
+  fclose(fp);
+}
+
+//------------------------------------------------
+
+void removeMedicine(medicine mdcn) {
+  medicine stocked;
+  FILE *fp = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
+                   "pharmacist/medicine.txt","rb");
+
+  fseek(fp,0,SEEK_END);
+  int size = ftell(fp) / sizeof(medicine);
+  medicine *medi = (medicine*)malloc(size*sizeof(medicine));
+
+  int i=0;
+  rewind(fp);
+  while(fread(&stocked,sizeof(medicine),1,fp)) {
+    if(mdcn.id == stocked.id) {
+      stocked.quantity = stocked.quantity-mdcn.quantity;
+      if(stocked.quantity < 0 ) stocked.quantity = 0;
+      printf("huwa hada");
+    }
+    medi[i] = stocked;
+    i++;
+    printf("hi ");
+  }
+  fclose(fp);
+
+  FILE *fw = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
+                   "pharmacist/medicine.txt","wb");
+  for(int j=0;j<i;j++) {
+    fwrite(&medi[j],sizeof(medicine),1,fw);
+    printf("? ");
+  }
+  fclose(fw);
+}
