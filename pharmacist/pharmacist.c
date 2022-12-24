@@ -65,6 +65,7 @@ pharmacist phSignUp() {
     if(strcmp(pass1,pass2) == 0) {
       break;
     } else {
+      ClearScreen();
       printf("\nYour password doesn't match.\n");
     }
   } while(1);
@@ -77,6 +78,7 @@ pharmacist phSignUp() {
     printf("file error.");
   }
   fwrite(&phmc, sizeof(pharmacist),1,fp);
+  ClearScreen();
   printf("\naccount created successfully.\n");
   fclose(fp);
 
@@ -97,7 +99,7 @@ pharmacist* phLogIn() {
   printf("Enter your password:_");
   scanf("%[^\n]s",password);
   fflush(stdin);
-
+  ClearScreen();
   FILE *fp = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
                    "pharmacist/pharmacist.txt","rb");
 
@@ -148,6 +150,8 @@ void phMenu(pharmacist phmc){
         updateInfos(phmc);
         break;
       case 7:
+        ClearScreen();
+        printf("Logged out.");
         return;
       default:
         break;
@@ -208,7 +212,8 @@ void addMedicine() {
                    "pharmacist/medicine.txt","ab");
 
   fwrite(&mdcn,sizeof(medicine),1,fp);
-
+  ClearScreen();
+  printf("Medicine Added.");
   fclose(fp);
 }
 
@@ -221,6 +226,7 @@ void deleteMedicine() {
   printf("Enter Medicine name:_");
   scanf("%s",name);
   fflush(stdin);
+  ClearScreen();
 
 
   FILE *fp = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
@@ -233,6 +239,12 @@ void deleteMedicine() {
   int i=0;
   rewind(fp);
   while(fread(&mdcn,sizeof(medicine),1,fp)) {
+    for(int j = 0; mdcn.name[j]; j++){
+      mdcn.name[j] = tolower(mdcn.name[j]);
+    }
+    for(int j = 0; name[j]; j++){
+      name[j] = tolower(name[j]);
+    }
     if(strcmp(mdcn.name,name)==0) {
       found = 1;
       continue;
@@ -275,6 +287,12 @@ void updateMedicine() {
   int i=0;
   rewind(fp);
   while(fread(&mdcn,sizeof(medicine),1,fp)) {
+    for(int j = 0; mdcn.name[j]; j++){
+      mdcn.name[j] = tolower(mdcn.name[j]);
+    }
+    for(int j = 0; name[j]; j++){
+      name[j] = tolower(name[j]);
+    }
     if(strcmp(mdcn.name,name)==0) {
       mdcn = requestMedicineInfos();
       found = 1;
@@ -292,6 +310,7 @@ void updateMedicine() {
   for(int j=0;j<i;j++) {
     fwrite(&medi[j],sizeof(medicine),1,fw);
   }
+  ClearScreen();
   printf("\nMedicine updated.");
   fclose(fw);
 }
@@ -322,11 +341,18 @@ void searchMedicine() {
   printf("Enter Medicine name:_");
   scanf("%s",name);
   fflush(stdin);
+  ClearScreen();
 
   FILE *fp = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
                    "pharmacist/medicine.txt","rb");
 
   while(fread(&mdcn,sizeof(medicine),1,fp)) {
+    for(int i = 0; mdcn.name[i]; i++){
+      mdcn.name[i] = tolower(mdcn.name[i]);
+    }
+    for(int i = 0; name[i]; i++){
+      name[i] = tolower(name[i]);
+    }
     if(strcmp(mdcn.name,name)==0) {
       found = 1;
       break;
@@ -388,6 +414,7 @@ void updateInfos(pharmacist phmc) {
   for(int j=0;j<i;j++) {
     fwrite(&pharmacists[j],sizeof(pharmacist),1,fw);
   }
+  ClearScreen();
   printf("\nInfos updated.");
   fclose(fw);
 

@@ -7,6 +7,7 @@ int menu(char *str,int min,int max) {
     printf("%s\n\t\tyour choice:_",str);
     scanf("%d",&choice);
     fflush(stdin);
+    ClearScreen();
 
     if(choice > max || choice < min) {
       printf("\nEnter a valid choice please.\n");
@@ -19,4 +20,9 @@ int menu(char *str,int min,int max) {
 
 //-------------------------------------------
 
-
+void ClearScreen()
+{
+  int n;
+  for (n = 0; n < 10; n++)
+    printf( "\n\n\n\n\n\n\n\n\n\n" );
+}

@@ -3,6 +3,6 @@
 
 
 int menu(char *str, int min, int max);
-
+void ClearScreen();
 
 #endif //PHARMACYMANAGEMENTSYSTEM_FUNCTIONS_H
