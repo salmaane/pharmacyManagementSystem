@@ -129,7 +129,7 @@ void cusMenu(customer cus) {
   printf("\nWelcome %s",cus.fname);
   while(1) {
     choice = menu("\nWhich operation you want to do ?\n\t1. View medicines\n\t2. Shop medicine"
-                  "\n\t3. View cart\n\t4. Confirm Orders\n\t5. LogOut",1,5);
+                  "\n\t3. View cart\n\t4. Confirm Orders\n\t5. Update your profile\n\t6. LogOut",1,6);
     switch(choice) {
       case 1:
         showMedicines();
@@ -144,6 +144,9 @@ void cusMenu(customer cus) {
         confirmOrders();
         break;
       case 5:
+        updateInfosCUS(cus);
+        break;
+      case 6:
         ClearScreen();
         printf("\nLogged out successfully.");
         remove("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/customer/cart.txt");
@@ -342,4 +345,56 @@ void removeMedicine(medicine mdcn) {
     fwrite(&medi[j],sizeof(medicine),1,fw);
   }
   fclose(fw);
+}
+
+//------------------------------------------------
+
+void updateInfosCUS(customer cus) {
+  customer customer1;
+
+  FILE *fp = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
+                   "customer/customer.txt","rb");
+  if(fp == NULL) printf("Error: file not found.");
+  fseek(fp,0,SEEK_END);
+  int size = ftell(fp) / sizeof(pharmacist);
+  customer *customers = (customer *)malloc(size*sizeof(customer));
+
+  int i=0;
+  rewind(fp);
+  while(fread(&customer1,sizeof(customer),1,fp)) {
+    if(strcmp(customer1.fname,cus.fname)==0 && strcmp(customer1.lname,cus.lname)==0 ) {
+      customer1 = cusRequestInfos();
+      char pass1[30],pass2[30];
+      do{
+        printf("\nChoose a password (between 8 and 20 characters):_");
+        scanf("%[^\n]s",pass1);
+        fflush(stdin);
+        if(strlen(pass1)<8 || strlen(pass1)>20) {
+          continue;
+        }
+        printf("\nConfirm your password:_");
+        scanf("%[^\n]s",pass2);
+        fflush(stdin);
+        if(strcmp(pass1,pass2) == 0) {
+          break;
+        } else {
+          printf("\nYour password doesn't match.\n");
+        }
+      } while(1);
+      strcpy(customer1.password, pass1);
+    }
+    customers[i] = customer1;
+    i++;
+  }
+  fclose(fp);
+
+  FILE *fw = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
+                   "customer/customer.txt","wb");
+  for(int j=0;j<i;j++) {
+    fwrite(&customers[j],sizeof(pharmacist),1,fw);
+  }
+  ClearScreen();
+  printf("\nInfos updated.");
+  fclose(fw);
+
 }

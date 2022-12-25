@@ -17,6 +17,7 @@ pharmacist* phLogIn();
 pharmacist phSignUp();
 pharmacist phRequestInfos();
 void phMenu(pharmacist phmc);
+void updateInfosPH(pharmacist phmc);
 
 
 
@@ -39,7 +40,6 @@ void deleteMedicine();
 void updateMedicine();
 void viewStock();
 void searchMedicine();
-void updateInfos(pharmacist phmc);
 
 
 

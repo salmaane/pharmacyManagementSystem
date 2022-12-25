@@ -17,6 +17,7 @@ void cusMenu(customer cus);
 customer cusRequestInfos();
 customer* cusLogIn();
 customer cusSignUp();
+void updateInfosCUS(customer cus);
 
 void shopMedicine();
 void payment(medicine mdcn);

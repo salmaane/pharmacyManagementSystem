@@ -147,7 +147,7 @@ void phMenu(pharmacist phmc){
         searchMedicine();
         break;
       case 6:
-        updateInfos(phmc);
+        updateInfosPH(phmc);
         break;
       case 7:
         ClearScreen();
@@ -371,7 +371,7 @@ void searchMedicine() {
 
 //------------------------------------------------------
 
-void updateInfos(pharmacist phmc) {
+void updateInfosPH(pharmacist phmc) {
   pharmacist pharmacist1;
 
   FILE *fp = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
