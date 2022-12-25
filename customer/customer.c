@@ -65,6 +65,7 @@ customer cusSignUp() {
     if(strcmp(pass1,pass2) == 0) {
       break;
     } else {
+      ClearScreen();
       printf("\nYour password doesn't match.\n");
     }
   } while(1);
@@ -77,6 +78,7 @@ customer cusSignUp() {
     printf("file error.");
   }
   fwrite(&cus, sizeof(customer),1,fp);
+  ClearScreen();
   printf("\naccount created successfully.\n");
   fclose(fp);
 
@@ -97,6 +99,7 @@ customer* cusLogIn() {
   printf("Enter your password:_");
   scanf("%[^\n]s",password);
   fflush(stdin);
+  ClearScreen();
 
   FILE *fp = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
                    "customer/customer.txt","rb");
@@ -141,9 +144,9 @@ void cusMenu(customer cus) {
         confirmOrders();
         break;
       case 5:
-        if(remove("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/customer/cart.txt") == 0) {
-          printf("\nLogged out successfully.");
-        }
+        ClearScreen();
+        printf("\nLogged out successfully.");
+        remove("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/customer/cart.txt");
         return;
       default:
         break;
@@ -155,6 +158,7 @@ void cusMenu(customer cus) {
 //-------------------------------------------------
 
 void showMedicines() {
+  ClearScreen();
   medicine mdcn;
   FILE *fp = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
                    "pharmacist/medicine.txt","rb");
@@ -195,6 +199,7 @@ void shopMedicine() {
       break;
     }
   }
+  ClearScreen();
   if(found) {
     payment(mdcn);
   } else {
@@ -209,6 +214,7 @@ void payment(medicine mdcn) {
   do{
     printf("\nEnter wanted quantity:_");
     scanf("%d",&quantity);
+    ClearScreen();
     if(quantity>mdcn.quantity) {
       printf("\nSorry only %d %s left.",mdcn.quantity,mdcn.name);
     }
@@ -324,11 +330,9 @@ void removeMedicine(medicine mdcn) {
     if(mdcn.id == stocked.id) {
       stocked.quantity = stocked.quantity-mdcn.quantity;
       if(stocked.quantity < 0 ) stocked.quantity = 0;
-      printf("huwa hada");
     }
     medi[i] = stocked;
     i++;
-    printf("hi ");
   }
   fclose(fp);
 
@@ -336,7 +340,6 @@ void removeMedicine(medicine mdcn) {
                    "pharmacist/medicine.txt","wb");
   for(int j=0;j<i;j++) {
     fwrite(&medi[j],sizeof(medicine),1,fw);
-    printf("? ");
   }
   fclose(fw);
 }
