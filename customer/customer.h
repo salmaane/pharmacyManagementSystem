@@ -1,6 +1,7 @@
 #ifndef PHARMACYMANAGEMENTSYSTEM_CUSTOMER_H
 #define PHARMACYMANAGEMENTSYSTEM_CUSTOMER_H
 
+#include "../pharmacist/pharmacist.h"
 
 typedef struct customer {
     char fname[30];
@@ -24,7 +25,7 @@ void payment(medicine mdcn);
 void addToCart(medicine mdcn,int quantity);
 void showMedicines();
 void viewCart();
-void confirmOrders();
+void confirmOrders(customer cus);
 void soldMedicine();
 void removeMedicine(medicine mdcn);
 

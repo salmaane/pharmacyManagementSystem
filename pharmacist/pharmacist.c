@@ -129,7 +129,8 @@ void phMenu(pharmacist phmc){
   while(1){
     choice = menu("\nWhich operation you want to do ?\n\t1. Add new medicine"
                   "\n\t2. Delete medicine\n\t3. Update medicine\n\t4. View stock"
-                  "\n\t5. Search medicine\n\t6. Update your profile\n\t7. Logout", 1, 7);
+                  "\n\t5. Search medicine\n\t6. Update your profile"
+                  "\n\t7. Show transactions log\n\t8. Logout", 1, 8);
     switch (choice) {
       case 1:
         addMedicine();
@@ -150,6 +151,9 @@ void phMenu(pharmacist phmc){
         updateInfosPH(phmc);
         break;
       case 7:
+        showRecords();
+        break;
+      case 8:
         ClearScreen();
         printf("Logged out.");
         return;

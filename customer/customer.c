@@ -141,7 +141,7 @@ void cusMenu(customer cus) {
         viewCart();
         break;
       case 4:
-        confirmOrders();
+        confirmOrders(cus);
         break;
       case 5:
         updateInfosCUS(cus);
@@ -169,9 +169,11 @@ void showMedicines() {
     printf("\nfile not found.");
   }
   while(fread(&mdcn,sizeof(medicine),1,fp)) {
-    printf("\n\tMEDICINE NAME: %s"
-           "\n\tMEDICINE PRICE: %d DH\n"
-            ,mdcn.name,mdcn.sale_cost);
+    if(mdcn.quantity > 0) {
+      printf("\n\tMEDICINE NAME: %s"
+             "\n\tMEDICINE PRICE: %d DH\n"
+              ,mdcn.name,mdcn.sale_cost);
+    }
   }
   fclose(fp);
 }
@@ -203,7 +205,7 @@ void shopMedicine() {
     }
   }
   ClearScreen();
-  if(found) {
+  if(found && mdcn.quantity>0) {
     payment(mdcn);
   } else {
     printf("\nSorry %s is not available.",name);
@@ -274,7 +276,7 @@ void viewCart() {
 
 //------------------------------------------------
 
-void confirmOrders() {
+void confirmOrders(customer cus) {
   medicine mdcn;
   FILE *fp = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
                    "customer/cart.txt","rb");
@@ -297,6 +299,7 @@ void confirmOrders() {
     return;
   }
   soldMedicine();
+  commitTransaction(cus);
   if(remove("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/customer/cart.txt")==0) {
     printf("\nOrders confirmed, Thank you.");
   }

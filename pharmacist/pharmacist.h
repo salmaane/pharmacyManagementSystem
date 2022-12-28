@@ -23,8 +23,8 @@ void updateInfosPH(pharmacist phmc);
 
 typedef struct medicine {
     int id;
-    int unit_cost;
     int sale_cost;
+    int unit_cost;
     int quantity;
     char name[20];
     char supplier_name[20];
