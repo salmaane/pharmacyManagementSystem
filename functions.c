@@ -36,9 +36,9 @@ void showRecords() {
 
    printf("---------------------------------------------------");
    while(fread(&log,sizeof(record),1,fp)){
-     printf("\n\tMedicine Id: %d\n\tCustomer: %s %s\n\tMedicine Name: %s"
-            "\n\tQuantity: %d\n\tPrice: %d DH\n\tTotal: %d DH\n",log.id, log.fname,
-            log.lname, log.medName, log.quantity, log.sale_cost, log.sale_cost*log.quantity);
+     printf("\n\tMedicine Id: %d\n\tCustomer: %s %s\n\tMedicine Name: %s\n\tDate and Time: %s"
+            "\tQuantity: %d\n\tPrice: %d DH\n\tTotal: %d DH\n",log.id, log.fname,
+            log.lname, log.medName, log.date_time, log.quantity, log.sale_cost, log.sale_cost*log.quantity);
      printf("---------------------------------------------------");
    }
 
@@ -51,6 +51,11 @@ void commitTransaction(customer cus) {
   medicine mdcn;
   record log;
 
+  time_t rawTime;
+  struct tm *info;
+  time(&rawTime);
+  info = localtime(&rawTime);
+
   FILE *fr = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/"
                    "customer/cart.txt","rb");
   FILE *fw = fopen("C:/Users/pc/Desktop/dev/C/pharmacyManagementSystem/pharmacist/log.txt","ab");
@@ -62,6 +67,7 @@ void commitTransaction(customer cus) {
     strcpy(log.fname,cus.fname);
     strcpy(log.lname,cus.lname);
     strcpy(log.medName,mdcn.name);
+    strcpy(log.date_time, asctime(info));
 
     fwrite(&log,sizeof(record),1,fw);
   }

@@ -10,7 +10,7 @@ typedef struct record {
     int sale_cost;
     int quantity;
     char medName[20];
-    // date and time;
+    char date_time[30];
 } record;
 
 int menu(char *str, int min, int max);

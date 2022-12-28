@@ -8,6 +8,6 @@
 #include "pharmacist/pharmacist.h"
 #include "customer/customer.h"
 #include<ctype.h>
-
+#include<time.h>
 
 #endif //PHARMACYMANAGEMENTSYSTEM_HEADERS_H
